@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework1</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div>
+        <ul id="myUL">
+            <li>Item1</li>
+            <li>Item2</li>
+            <li>Item3</li>
+            <li>Item4</li>
+            <li>Item5</li>
+        </ul>
+    </div>
+    <form>
+        <input type="button" value="Первый элемент" onclick="firstElement()"><br>
+        <input type="button" value="Последний элемент" onclick="lastElement()"><br>
+        <input type="button" value="Следующий элемент" onclick="nextElement()"><br>
+        <input type="button" value="Предыдущий элемент" onclick="previousElement()"><br>
+        <input type="button" value="Добавить элемент" onclick="addElement()"><br>
+        <input type="button" value="Удалить элемент" onclick="removeElement()"><br>
+        <input type="button" value="Добавить в начало" onclick="addElementToBegin()"><br>
+    </form>
+    <script>
+        var myUL = document.getElementById("myUL");
+        var currentIndex = -1;
+        /*Сбрасываем цвет текущего элемента*/
+        function unSelectCurrentElement() {
+            if (currentIndex !== -1) {
+                myUL.children[currentIndex].style.color = "black";
+            }
+        }
+        /*Выделяем необходимый элемент*/
+        function selectElement(index) {
+            if (index !== currentIndex) {
+                unSelectCurrentElement();
+                myUL.children[index].style.color = "red";
+                currentIndex = index;
+            }
+        }
+        function firstElement() {
+            if (myUL.children.length > 0) {
+                selectElement(0);
+            }
+        }
+        function lastElement() {
+            selectElement(myUL.children.length - 1);
+        }
+        function nextElement() {
+            if (myUL.children.length > 0) {
+                if (currentIndex === myUL.children.length - 1) {
+                    selectElement(0);
+                } else {
+                    selectElement(currentIndex + 1);
+                }
+            }
+        }
+        function previousElement() {
+            if (currentIndex === 0 || currentIndex === -1) {
+                selectElement(myUL.children.length - 1);
+            } else {
+                selectElement(currentIndex - 1);
+            }
+        }
+        function addElement() {
+            var newItem = document.createElement("li");
+            newItem.innerHTML = "New Item at the end of list";
+            myUL.appendChild(newItem);
+        }
+        function removeElement() {
+            if (currentIndex === myUL.children.length - 1) {
+                currentIndex = -1;
+            }
+            if (myUL.children.length > 0) {
+                var lastChild = myUL.children[myUL.children.length - 1];
+                myUL.removeChild(lastChild);
+            } else {
+                alert("Все элементы удалены!");
+            }
+        }
+        function addElementToBegin() {
+            var newItem = document.createElement("li");
+            newItem.innerHTML = "New Item at the begin of list";
+            var firstChild = myUL.children[0];
+            myUL.insertBefore(newItem, firstChild);
+            if (currentIndex !== -1) {
+                currentIndex++;
+            }
+
+        }
+    </script>
+</body>
+
+</html>
