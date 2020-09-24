@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework3_Task2</title>
+</head>
+
+<body>
+    <div>
+        <ul id="myUL"></ul>
+    </div>
+    <script>
+        var phrase = prompt("Введите фразу на русском языке");
+        var patt = /\s*,\s*|\s{1,}/;
+        var res = phrase.split(patt);
+        var myUL = document.getElementById("myUL");
+        for (var i = 0; i < res.length; i++) {
+            var li = document.createElement('li');
+            if (i === 0) {
+                li.innerHTML = res[i].toUpperCase();
+            } else if (i === res.length - 1 || i === res.length - 2) {
+                li.innerHTML = res[i].toLowerCase();
+            } else {
+                li.innerHTML = res[i];
+            }
+            myUL.appendChild(li);
+        }
+        patt = /а/g;
+        var counter = 0;
+        while (patt.exec(phrase) != null) {
+            counter++;
+        }
+        alert("Найдено " + counter + " букв а");
+    </script>
+</body>
+
+</html>
