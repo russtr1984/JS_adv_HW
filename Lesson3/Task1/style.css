@@ -1,0 +1,17 @@
+#counter{
+    font-size: 5rem;
+    margin: 50px;
+}
+input {
+    width: 100px;
+    height: 50px;
+    border-radius: 50px;
+    outline: none;
+    color: white;
+}
+input:first-of-type {
+    background-color: green;
+}
+input:nth-child(3) {
+    background-color: black;
+}
