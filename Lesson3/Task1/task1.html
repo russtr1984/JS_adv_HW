@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework3_Task1</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <p id="counter">0</p>
+    <input type="button" value="Start">
+    <input type="button" value="Reset" hidden>
+    <script>
+        var counter = 0;
+        var par = document.getElementById("counter");
+        var myVar;
+        var btnStart = document.querySelector("input:nth-child(2)");
+        var btnReset = document.querySelector("input:nth-child(3)");
+        btnStart.onclick = startTimer;
+        var isBack = 0;
+        function startTimer() {
+            btnStart.value = "Stop";
+            btnStart.style.backgroundColor = "red";
+            btnStart.onclick = stopTimer;
+            if (counter === 30) {
+                isBack = 1;
+            }
+            if (isBack) {
+                myVar = setInterval(decCounter,100);
+                btnReset.setAttribute("hidden", true);
+            } else {
+                myVar = setInterval(addCounter,100);
+            }
+        }
+        function addCounter() {
+            if (counter === 30) {
+                    clearInterval(myVar);
+                    btnStart.value = "Start back";
+                    btnStart.style.backgroundColor = "green";
+                    btnReset.removeAttribute("hidden");
+                    btnStart.onclick = startTimer;
+                } else {
+                    counter++;
+                    par.innerHTML = counter;
+                }
+        }
+        function decCounter() {
+            if (counter === 0) {
+                    clearInterval(myVar);
+                    btnStart.value = "Start";
+                    btnStart.onclick = startTimer;
+                    btnStart.style.backgroundColor = "green";
+                    isBack = 0;
+                } else {
+                    counter--;
+                    par.innerHTML = counter;
+                }
+        }
+        function stopTimer() {
+            clearInterval(myVar);
+            btnReset.removeAttribute("hidden");
+            btnStart.value = "Resume";
+            btnStart.style.backgroundColor = "rgb(96, 0, 185)";
+            btnStart.onclick = resumeTimer;
+        }
+        function resumeTimer() {
+            startTimer();
+            btnReset.setAttribute("hidden", true);
+        }
+        btnReset.onclick = function() {
+            counter = 0;
+            par.innerHTML = counter;
+            isBack = 0;
+            btnReset.setAttribute("hidden", true);
+            btnStart.value = "Start";
+            btnStart.style.backgroundColor = "green";
+            btnStart.onclick = startTimer;
+        }
+    </script>
+</body>
+</html>
