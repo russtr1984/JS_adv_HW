@@ -1,0 +1,55 @@
+<!-- Напишите регулярные выражения, которые будут выбирать 
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $2.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mydiv">
+        Данный текст содержит индексы 12345, 45789, а также с 6 цифрами, например, 123456, 741852 или меньшим
+        количеством цифр, например,
+        123, 12, 7894,1. Также в тексте есть IP-адреса, например, 192.168.7.221, 255.255.255.255, 10.4.6.7
+        Есть цены в долларах $0.84, $2.84, $4, а есть цены в гривнах - 10.24грн, 15.42грн
+        Также есть даты в данном тексте 01/09/2020, 05/09/2019 или 08/12/2020.
+    </div>
+    <h3>Найдены индексы</h3>
+    <ul id="indexes"></ul>
+    <h3>Найдены IP-адреса</h3>
+    <ul id="ip"></ul>
+    <h3>Найдены цены в долларах</h3>
+    <ul id="prices"></ul>
+    <h3>Найдены даты</h3>
+    <ul id="date"></ul>
+    <script>
+        var div = document.getElementById("mydiv");
+        var pattIndex = /\b\d{5}\b/g;
+        var result;
+        var ulIndexes = document.getElementById("indexes");
+        outputResult(ulIndexes, pattIndex);        
+        var ulIP = document.getElementById("ip");
+        var pattIp = /\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/g;
+        outputResult(ulIP, pattIp);
+        var ulPrices = document.getElementById("prices");
+        var pattPrices = /\$\d+\.?\d{0,2}/g;
+        outputResult(ulPrices, pattPrices);
+        var ulDate = document.getElementById("date");
+        var pattDates = /\d{1,2}\/\d{1,2}\/\d{4}/g;
+        outputResult(ulDate, pattDates);
+        /*Функция для вывода результатов поиска строк по шаблонам в документ*/
+        function outputResult(ul, patt) {
+            while ((result = patt.exec(div.innerHTML)) != null) {
+                ul.insertAdjacentHTML("beforeend", "<li>" + result[0] + "</li>");
+            };
+        }
+    </script>
+</body>
+
+</html>
