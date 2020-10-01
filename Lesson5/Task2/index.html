@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #main>div {
+            border: 2px solid red;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var mainDiv = document.getElementById("main");
+            if (mainDiv) {
+                mainDiv.addEventListener("click", mainClickHandler);
+            }
+            function mainClickHandler(e) {
+                var target = e.target;
+                if (target.tagName !== "BUTTON") {
+                    return
+                }
+                mainDiv.removeChild(target.parentElement);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <div>1 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore enim assumenda, consectetur, pariatur
+            ratione perspiciatis obcaecati animi cupiditate distinctio consequatur laborum quidem, suscipit
+            necessitatibus quos voluptates error officiis alias perferendis?
+            <br>
+            <button>Delete</button>
+        </div>
+        <div>2 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore enim assumenda, consectetur, pariatur
+            ratione perspiciatis obcaecati animi cupiditate distinctio consequatur laborum quidem, suscipit
+            necessitatibus quos voluptates error officiis alias perferendis?
+            <br>
+            <button>Delete</button>
+        </div>
+        <div>3 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore enim assumenda, consectetur, pariatur
+            ratione perspiciatis obcaecati animi cupiditate distinctio consequatur laborum quidem, suscipit
+            necessitatibus quos voluptates error officiis alias perferendis?
+            <br>
+            <button>Delete</button>
+        </div>
+        <div>4 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore enim assumenda, consectetur, pariatur
+            ratione perspiciatis obcaecati animi cupiditate distinctio consequatur laborum quidem, suscipit
+            necessitatibus quos voluptates error officiis alias perferendis?
+            <br>
+            <button>Delete</button>
+        </div>
+        <div>5 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore enim assumenda, consectetur, pariatur
+            ratione perspiciatis obcaecati animi cupiditate distinctio consequatur laborum quidem, suscipit
+            necessitatibus quos voluptates error officiis alias perferendis?
+            <br>
+            <button>Delete</button>
+        </div>
+    </div>
+</body>
+
+</html>
