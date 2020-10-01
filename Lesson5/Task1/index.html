@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .show {
+            display: block;
+        }
+
+        input {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var link = document.querySelector("a");
+            var input = document.querySelector("input");
+            link.addEventListener("click", linkEventHandler);
+            input.addEventListener("click", removeEventHandler);
+            function linkEventHandler(event) {
+                var div = document.querySelector("div");
+                div.classList.toggle("show");
+                event.preventDefault();
+            }
+            function removeEventHandler() {
+                link.removeEventListener("click", linkEventHandler);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <a href="#">Кликни, чтобы отобразить/скрыть текст</a>
+    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint omnis, accusantium error nihil, tempora provident
+        reiciendis eaque corporis quidem officia iure. Aperiam hic repellat, id voluptatibus alias possimus accusamus
+        repudiandae.</div>
+    <br>
+    <input type="button" value="Отменить обработку клика ссылки">
+</body>
+
+</html>
