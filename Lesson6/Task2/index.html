@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+
+    #move {
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        border-radius: 50%;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+
+    input {
+        margin: 20px;
+    }
+</style>
+<script>
+    window.addEventListener("load", function () {
+        var divMove = document.getElementById("move");
+        var btnStop = document.querySelector("input");
+        divMove.addEventListener("click", startMove);
+        btnStop.addEventListener("click", stopMove);
+        var myVar;
+        divMove.style.left = window.getComputedStyle(divMove).left;
+        function startMove() {
+            myVar = setInterval(function () {
+                var rect = divMove.getBoundingClientRect();
+                if (rect.right >= document.body.clientWidth - 2) {
+                    divMove.style.left = "0";
+                }
+                divMove.style.left = (parseInt(divMove.style.left) + 2) + "px";
+            }, 1);
+        }
+        function stopMove() {
+            clearInterval(myVar);
+        }
+    });
+
+</script>
+
+<body>
+    <div id="move"></div>
+    <input type="button" value="Stop">
+</body>
+
+</html>
