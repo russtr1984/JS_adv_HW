@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #divMove {
+        height: 50px;
+        width: 50px;
+        background-color: blue;
+        position: absolute;
+        top: 250px;
+        left: 250px;
+    }
+</style>
+<script>
+    window.addEventListener("load", function () {
+        var move = false;
+        var divMove = document.getElementById("divMove");
+        var clickStartX;
+        var clickStartY;
+        var startLeft;
+        var startTop;
+        document.addEventListener("mousedown", function (e) {
+            var rect = divMove.getBoundingClientRect();
+            divMove.style.left = window.getComputedStyle(divMove).left;
+            divMove.style.top = window.getComputedStyle(divMove).top;
+            if (e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                move = true;
+                clickStartX = e.clientX;
+                clickStartY = e.clientY;
+                startLeft = rect.left;
+                startTop = rect.top;
+            }
+        });
+        document.addEventListener("mouseup", function (e) {
+            if (move) {
+                move = false;
+            }
+        });
+        document.addEventListener("mousemove", function (e) {
+            if (move) {
+                var distanceX = e.clientX - clickStartX;
+                var distanceY = e.clientY - clickStartY;
+                divMove.style.left = (startLeft + distanceX) + "px";
+                divMove.style.top = (startTop + distanceY) + "px";
+            }
+        });
+    });
+</script>
+
+<body>
+    <div id="divMove"></div>
+</body>
+
+</html>

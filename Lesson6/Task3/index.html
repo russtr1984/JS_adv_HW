@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Пример проверки достоверности ввода</title>
+    <script type="text/javascript" src="js.js"></script>
+    <style type="text/css">
+        input.invalid {
+            background-color: Pink;
+        }
+
+        input.valid {
+            background-color: LightGreen;
+        }
+    </style>
+</head>
+<body>
+    <form name="form1">
+            Name:
+        <input type="text" name="userName" onchange="validate(this)"/><br />
+            email:
+        <input type="text" name="email" onchange="validate(this)"/><br />
+            zipcode:
+        <input type="text" name="zip" onchange="validate(this)"/><br />
+        <input type="submit" onclick="submitHandler(event)"/>
+    </form>
+ </body>
+</html>
