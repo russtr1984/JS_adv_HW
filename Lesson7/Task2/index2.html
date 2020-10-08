@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function Doctor(name) {
+        this.name = name;
+        this.walk = function () {
+            document.write(`${this.name} walks.<br>`);
+        }
+        this.eat = function () {
+            document.write(`${this.name} eats.<br>`);
+        }
+        this.drink = function () {
+            document.write(`${this.name} drinks.<br>`);
+        }
+        this.cure = function () {
+            document.write(`${this.name} cures.<br>`);
+        }
+    }
+    function Dentist(name) {
+        this.name = name;
+        this.cure = function () {
+            document.write(`${this.name} treats tooth.<br>`);
+        }
+    }
+    function Surgeon(name) {
+        this.name = name;
+        this.cure = function () {
+            document.write(`${this.name} performs operations.<br>`);
+        }
+    }
+    Dentist.prototype = new Doctor();
+    Surgeon.prototype = new Doctor();
+    var docs = [new Doctor("Doctor Anna"), new Dentist("Dentist Robert"), new Surgeon("Surgeon Michael")];
+    for (doc of docs) {
+        doc.walk();
+        doc.eat();
+        doc.drink();
+        doc.cure();
+        document.write("*******************************<br>");
+    }
+</script>
+
+<body>
+
+</body>
+
+</html>

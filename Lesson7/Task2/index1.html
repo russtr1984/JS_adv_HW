@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Man(name) {
+            this.name = name;
+            this.walk = function () {
+                document.write(`${this.name} walks.<br>`);
+            }
+            this.eat = function () {
+                document.write(`${this.name} eats.<br>`);
+            }
+            this.drink = function () {
+                document.write(`${this.name} drinks.<br>`);
+            }
+        }
+        function Soldier(name) {
+            this.name = name;
+            this.shoot = function () {
+                document.write(`${this.name} shoots.<br>`);
+            }
+        }
+        function Doctor(name){
+            this.name = name;
+            this.cure = function() {
+                document.write(`${this.name} cures.<br>`);
+            }
+        }
+        Soldier.prototype = new Man();
+        Doctor.prototype = new Man();
+
+        soldier = new Soldier("Soldier Ivan");
+        soldier.walk();
+        soldier.eat();
+        soldier.drink();
+        soldier.shoot();
+
+        doc = new Doctor('Doctor Dmytro');
+        doc.walk();
+        doc.eat();
+        doc.drink();
+        doc.cure();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

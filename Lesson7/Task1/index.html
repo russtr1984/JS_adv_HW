@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.addEventListener("load", function () {
+            var result = document.getElementById("result");
+            var btnGetDay = document.getElementById("btnGetDay");
+            btnGetDay.addEventListener("click", function () {
+                var sDate = document.getElementById("date").value.trim();
+                var correctDate = sDate.substr(6, 4) + '-' + sDate.substr(3, 2) + '-' + sDate.substr(0, 2);
+                var dDate = new Date(correctDate);
+                if (!isNaN(dDate) && sDate.length == 10) {
+                    result.innerHTML = `${dDate} - ${myGetDay(dDate)}`;
+                } else {
+                    result.innerHTML = "Некорректная дата";
+                }
+            });
+            function myGetDay(dat) {
+                var day = dat.getDay();
+                switch (day) {
+                    case 0: return 'Воскресенье';
+                    case 1: return 'Понедельник';
+                    case 2: return 'Вторник';
+                    case 3: return 'Среда';
+                    case 4: return 'Четверг';
+                    case 5: return 'Пятница';
+                    case 6: return 'Суббота';
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <label for="date">Введите дату в формате dd-mm-yyyy</label>
+    <input type="text" id="date" placeholder="dd-mm-yyyy">
+    <input type="button" id="btnGetDay" value="Узнать день недели">
+    <p id="result"></p>
+</body>
+
+</html>
