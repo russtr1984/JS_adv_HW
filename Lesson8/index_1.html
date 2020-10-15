@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #login {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #error {
+            color: red;
+        }
+
+        form {
+            margin: 20px 30px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function () {
+            document.forms[0].addEventListener('keydown', function (event) {
+                if (event.keyCode == 13) {
+                    event.preventDefault();
+                }
+            });
+            var btnLogin = document.getElementById("btnLogin");
+            var btnExit = document.getElementById("btnExit");
+            btnLogin.addEventListener("click", clickLoginHandler);
+            btnExit.addEventListener("click", clickExitHandler);
+            var divLogin = document.getElementById("login");
+            var divMain = document.getElementById("main");
+            function clickLoginHandler() {
+                var pError = document.getElementById("error");
+                var pContent = document.getElementById("content");
+                var txtLogin = document.getElementById("txtLogin");
+                pError.innerHTML = '';
+                if (txtLogin.value === "Admin" || txtLogin.value === "admin") {
+                    document.cookie = `login=${encodeURIComponent(txtLogin.value)};`;
+                    divLogin.classList.toggle("hide");
+                    pContent.innerHTML = `Пользователь ${findCookieValue('login')} вошел в систему`;
+                    divMain.classList.toggle("hide");
+                    txtLogin.value = '';
+                } else {
+                    pError.innerHTML = "Нет такого пользователя";
+                }
+            }
+            function clickExitHandler() {
+                divMain.classList.toggle("hide");
+                divLogin.classList.toggle("hide");
+            }
+            function findCookieValue(cookieName) {
+                var allcookies = document.cookie;
+                var pos = allcookies.indexOf(cookieName + "=");
+                if (pos != -1) {
+                    var start = pos + cookieName.length + 1;
+                    var end = allcookies.indexOf(";", start);
+                    if (end == -1) end = allcookies.length;
+                    var value = allcookies.substring(start, end);
+                    value = decodeURIComponent(value);
+                    return value;
+                }
+            };
+        });
+
+    </script>
+</head>
+
+<body>
+    <div id="login">
+        <form>
+            <label for="txtLogin"> Введите логин</label>
+            <input type="text" id="txtLogin">
+            <input type="button" name="Login" id="btnLogin" value="Войти">
+            <p id="error"></p>
+        </form>
+    </div>
+    <div id="main" class="hide">
+        <p id="content"></p>
+        <br>
+        <input type="button" name="Exit" id="btnExit" value="Выйти">
+    </div>
+</body>
+
+</html>
